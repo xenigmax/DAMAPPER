@@ -50,7 +50,7 @@
 
 static char *Usage[] =
   { "[-vbpCN] [-k<int(20)>] [-t<int>] [-M<int>] [-T<int(4)>]",
-    "         [-e<double(.85)] [-s<int(100)>] [-n<double(1.00)>] [-o<char>]",
+    "         [-e<double(.85)] [-s<int(100)>] [-n<double(1.00)>] [-o<char>] [-l<char>]",
     "         [-m<track>]+  <reference:dam> <reads:db> ...",
   };
 
