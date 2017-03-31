@@ -5,7 +5,7 @@ This version of DAMAPPER supports 2 more options.
 
 I didn't touch the other parts. However, you can try this version with your own risk.
 
-Prerequisties
+Prerequisites
 -------------
 1) DALIGNER : https://github.com/thegenemyers/DALIGNER
 2) DAZZ_DB : https://github.com/thegenemyers/DAZZ_DB
