@@ -3408,13 +3408,13 @@ void Reporter(char *aname, HITS_DB *ablock, char *bname, HITS_DB *bblock,
   for (i = 0; i < NTHREADS; i++)
     { parmr[i].work  = New_Work_Data();
       if (mflag & 0x1)
-        { sprintf(fname,"/tmp/%s.%s.M%d.las",aname,bname,i+1);
+        { sprintf(fname,"%s/%s.%s.M%d.las",OUT_DIR,aname,bname,i+1);
           parmr[i].afile = Fopen(fname,"w");
           if (parmr[i].afile == NULL)
             exit (1);
         }
       if (mflag & 0x2)
-        { sprintf(fname,"/tmp/%s.%s.R%d.las",bname,aname,i+1);
+        { sprintf(fname,"%s/%s.%s.R%d.las",OUT_DIR,bname,aname,i+1);
           parmr[i].bfile = Fopen(fname,"w");
           if (parmr[i].bfile == NULL)
             exit (1);

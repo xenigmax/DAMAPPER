@@ -17,7 +17,8 @@
 #define _HITS_DB
 
 #include <stdio.h>
-
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "QV.h"
 
 #define HIDE_FILES          //  Auxiliary DB files start with a . so they are "hidden"
@@ -122,6 +123,16 @@ extern char Ebuffer[];
   if (*eptr != '\0' || argv[i][2] == '\0')                                              \
     { fprintf(stderr,"%s: -%c '%s' argument is not a real number\n",			\
                      Prog_Name,argv[i][1],argv[i]+2);      				\
+      exit (1);                                                                         \
+    }
+
+struct stat info;
+#define ARG_DIR(path)                                                                   \
+  sprintf(path, argv[i]+2);                                                             \
+  stat( path, &info );                                                                  \
+  if( stat( path, &info ) != 0 || !(info.st_mode & S_IFDIR) )                           \
+    { fprintf(stderr,"%s: -%c '%s' is not ready to use.\n",                             \
+                     Prog_Name,argv[i][1],path);                                        \
       exit (1);                                                                         \
     }
 

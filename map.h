@@ -19,6 +19,7 @@ extern int    VERBOSE;
 extern int    PROFILE;
 extern int    SPACING;
 extern double BEST_TIE;
+extern char   OUT_DIR[];
 
 extern uint64 MEM_LIMIT;
 extern uint64 MEM_PHYSICAL;

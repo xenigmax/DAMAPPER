@@ -50,7 +50,7 @@
 
 static char *Usage[] =
   { "[-vbpCN] [-k<int(20)>] [-t<int>] [-M<int>] [-T<int(4)>]",
-    "         [-e<double(.85)] [-s<int(100)>] [-n<double(1.00)>]",
+    "         [-e<double(.85)] [-s<int(100)>] [-n<double(1.00)>] [-o<char>]",
     "         [-m<track>]+  <reference:dam> <reads:db> ...",
   };
 
@@ -61,6 +61,8 @@ int     SPACING;
 double  BEST_TIE;
 uint64  MEM_LIMIT;
 uint64  MEM_PHYSICAL;
+char    OUT_DIR[256] = "/tmp";
+char    LA_DIR[256] = "";
 
 /*  Adapted from code by David Robert Nadeau (http://NadeauSoftware.com) licensed under
  *     "Creative Commons Attribution 3.0 Unported License"
@@ -636,6 +638,12 @@ int main(int argc, char *argv[])
           case 'T':
             ARG_POSITIVE(NTHREADS,"Number of threads")
             break;
+          case 'o':
+            ARG_DIR(OUT_DIR)
+            break;
+          case 'l':
+            ARG_DIR(LA_DIR)
+            break;
         }
       else
         argv[j++] = argv[i];
@@ -833,29 +841,29 @@ int main(int argc, char *argv[])
         command = CommandBuffer(aroot,broot);
 
         if ((mflag & FLAG_DOA) != 0)
-          { sprintf(command,"LAsort -a /tmp/%s.%s.M*.las",broot,aroot);
+          { sprintf(command,"%s/LAsort -a %s/%s.%s.M*.las",LA_DIR,OUT_DIR,broot,aroot);
             if (VERBOSE)
               printf("\n%s\n",command);
             system(command);
-            sprintf(command,"LAcat /tmp/%s.%s.M#.S >%s.%s.las",broot,aroot,broot,aroot);
+            sprintf(command,"%s/LAcat %s/%s.%s.M#.S >%s/%s.%s.las",LA_DIR,OUT_DIR,broot,aroot,OUT_DIR,broot,aroot);
             if (VERBOSE)
               printf("%s\n",command);
             system(command);
-            sprintf(command,"rm /tmp/%s.%s.M*.las",broot,aroot);
+            sprintf(command,"rm %s/%s.%s.M*.las",OUT_DIR,broot,aroot);
             if (VERBOSE)
               printf("%s\n",command);
             system(command);
           }
         if ((mflag & FLAG_DOB) != 0)
-          { sprintf(command,"LAsort -a /tmp/%s.%s.R*.las",aroot,broot);
+          { sprintf(command,"%s/LAsort -a %s/%s.%s.R*.las",LA_DIR,OUT_DIR,aroot,broot);
             if (VERBOSE)
               printf("\n%s\n",command);
             system(command);
-            sprintf(command,"LAmerge -a %s.%s /tmp/%s.%s.R*.S.las",aroot,broot,aroot,broot);
+            sprintf(command,"%s/LAmerge -a %s/%s.%s %s/%s.%s.R*.S.las",LA_DIR,OUT_DIR,aroot,broot,OUT_DIR,aroot,broot);
             if (VERBOSE)
               printf("%s\n",command);
             system(command);
-            sprintf(command,"rm /tmp/%s.%s.R*.las",aroot,broot);
+            sprintf(command,"rm %s/%s.%s.R*.las",OUT_DIR,aroot,broot);
             if (VERBOSE)
               printf("%s\n",command);
             system(command);
