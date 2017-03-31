@@ -9,8 +9,7 @@ Prerequisites
 -------------
 1) DALIGNER : https://github.com/thegenemyers/DALIGNER
 2) DAZZ_DB : https://github.com/thegenemyers/DAZZ_DB
-3) DAMAPPER : https://github.com/thegenemyers/DAMAPPER
-4) LASTOOLS : https://github.com/gt1/lastools
+3) LASTOOLS : https://github.com/gt1/lastools
 
 Please install above packages.
 
