@@ -16,7 +16,7 @@ Please install above packages.
 
 Setup
 -----
-1) Modfiy ["configuration"](https://github.com/xenigmax/DAMAPPER/blob/master/run.sh#L6-L21) part of `run.sh` according to your environment.
+1) Modify ["configuration"](https://github.com/xenigmax/DAMAPPER/blob/master/run.sh#L6-L21) part of `run.sh` according to your environment.
 2) Make `ref.dam` from `ref.fasta` using fasta2DAM. You can refer [this](https://dazzlerblog.wordpress.com/command-guides/dazz_db-command-guide/) blog article.
 
 Run
